@@ -9,6 +9,7 @@
     job-name:
       - 'ui-tests'
       - 'runner-tests'
+      - 'jobs_uploader'
     columns:
       - status
       - weather

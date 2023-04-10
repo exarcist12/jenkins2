@@ -5,7 +5,7 @@
     scm:
     - git:
         url: https://github.com/exarcist12/test3.git
-        credentials-id: rest
+        credentials-id: jenkins
         branches:
         - FETCH_HEAD
         refspec: ${BRANCH}

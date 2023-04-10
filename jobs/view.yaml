@@ -9,7 +9,6 @@
     job-name:
       - 'ui-tests'
       - 'runner-tests'
-      - 'jobs_uploader'
     columns:
       - status
       - weather
@@ -22,7 +21,8 @@
 - view:
     name: DevOps
     view-type: list
-    description: DevOps
+    description: |
+      <h3 style="color:#999696;">DevOps</h3>
     filter-executors: true
     filter-queue: true
     job-name:

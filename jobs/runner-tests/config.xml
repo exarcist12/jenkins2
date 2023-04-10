@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><flow-definition plugin="workflow-job">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps">
+    <sandbox>false</sandbox>
+    <scm class="hudson.plugins.git.GitSCM">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <name>origin</name>
+          <refspec>${BRANCH}</refspec>
+          <url>https://github.com/exarcist12/jenkins2.git</url>
+          <credentialsId>jenkins</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>FETCH_HEAD</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <disableSubmodules>false</disableSubmodules>
+      <recursiveSubmodules>false</recursiveSubmodules>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <remotePoll>false</remotePoll>
+      <gitTool>Default</gitTool>
+      <submoduleCfg class="list"/>
+      <reference/>
+      <gitConfigName/>
+      <gitConfigEmail/>
+      <extensions>
+        <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+      </extensions>
+    </scm>
+    <scriptPath>jobs/scripts/run-all-ui-tests.groovy</scriptPath>
+  </definition>
+  <actions/>
+  <description>&lt;h3 style=&quot;color:#999696;&quot;&gt;Runner tests&lt;/h3&gt;&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
+  <keepDependencies>false</keepDependencies>
+  <logRotator>
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>10</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>100</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH</name>
+          <description>Branch for tempest barbican UI tests</description>
+          <defaultValue>master</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BASE_URL</name>
+          <description>Base url</description>
+          <defaultValue>https://otus.ru</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BROWSER</name>
+          <description>Browxser name</description>
+          <defaultValue>chrome</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BROWSER_VERSION</name>
+          <description>Browser version</description>
+          <defaultValue>107.0</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>GRID_URL</name>
+          <description/>
+          <defaultValue>http://127.0.0.1:4445</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+          <name>JOB_RUNNER</name>
+          <description>Tests type</description>
+          <value>api,ui,mobile</value>
+          <visibleItemCount>5</visibleItemCount>
+          <multiSelectDelimiter>,</multiSelectDelimiter>
+          <quoteValue>false</quoteValue>
+          <defaultValue>api,ui,mobile</defaultValue>
+          <descriptionPropertyValue/>
+          <type>PT_MULTI_SELECT</type>
+          <propertyFile/>
+          <propertyKey/>
+          <defaultPropertyFile/>
+          <defaultPropertyKey/>
+          <descriptionPropertyFile/>
+          <descriptionPropertyKey/>
+          <bindings/>
+          <groovyScript/>
+          <groovyScriptFile/>
+          <groovyClasspath/>
+          <defaultGroovyScript/>
+          <defaultGroovyClasspath/>
+          <descriptionGroovyScript/>
+          <descriptionGroovyScriptFile/>
+          <descriptionGroovyClasspath/>
+          <javascript/>
+          <javascriptFile/>
+          <saveJSONParameterToFile>false</saveJSONParameterToFile>
+        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+</flow-definition>

@@ -1,5 +1,5 @@
 timeout(60) {
-   node('maven-slave') {
+   node('jobs-uploader') {
       stage("Checkout") {
          checkout scm
       }

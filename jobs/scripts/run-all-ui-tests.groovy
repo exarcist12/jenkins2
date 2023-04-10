@@ -2,7 +2,7 @@ timeout(60) {
     node('maven-slave') {
         stage('Checkout') {
             checkout scm
-            // git branch: "$BRANCH", credentialsId: 'jenkins', url: 'git@github.com:exarcist12/jenkins2.git'
+            // git branch: "$BRANCH", credentialsId: 'jenkins', url: 'https://github.com/exarcist12/jenkins2.git'
         }
         stage('Run tests') {
             def jobs = [:]

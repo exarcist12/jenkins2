@@ -4,8 +4,8 @@
     name: git-ui-tests
     scm:
     - git:
-        url: git@github.com:exarcist12/selenium_otus_students.git
-        credentials-id: jenkins
+        url: https://github.com/exarcist12/test3.git
+        credentials-id: rest
         branches:
         - FETCH_HEAD
         refspec: ${BRANCH}
@@ -14,7 +14,7 @@
     name: git-runner
     scm:
     - git:
-        url: git@github.com:exarcist12/jenkins2.git
+        url: https://github.com/exarcist12/jenkins2.git
         credentials-id: jenkins
         branches:
         - FETCH_HEAD

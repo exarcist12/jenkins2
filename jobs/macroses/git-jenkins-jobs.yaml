@@ -1,21 +1,41 @@
 ---
 
 - scm:
-    name: git-ui-tests
-    scm:
-    - git:
-        url: https://github.com/exarcist12/test3.git
-        credentials-id: jenkins
-        branches:
-        - FETCH_HEAD
-        refspec: ${BRANCH}
+      name: git-ui-tests
+      scm:
+          - git:
+                url: https://github.com/exarcist12/java_otus.git
+                credentials-id: jenkins
+                branches:
+                    - FETCH_HEAD
+                refspec: ${BRANCH}
 
 - scm:
-    name: git-runner
-    scm:
-    - git:
-        url: https://github.com/exarcist12/jenkins2.git
-        credentials-id: jenkins
-        branches:
-        - FETCH_HEAD
-        refspec: ${BRANCH}
+      name: git-appium-tests
+      scm:
+          - git:
+                url: https://github.com/exarcist12/appium-otus.git
+                credentials-id: jenkins
+                branches:
+                    - FETCH_HEAD
+                refspec: ${BRANCH}
+
+- scm:
+      name: git-api-tests
+      scm:
+          - git:
+                url: https://github.com/exarcist12/test3.git
+                credentials-id: jenkins
+                branches:
+                    - FETCH_HEAD
+                refspec: ${BRANCH}
+
+- scm:
+      name: git-runner
+      scm:
+          - git:
+                url: https://github.com/exarcist12/jenkins2.git
+                credentials-id: jenkins
+                branches:
+                    - FETCH_HEAD
+                refspec: ${BRANCH}

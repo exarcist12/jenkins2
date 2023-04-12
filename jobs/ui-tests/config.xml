@@ -65,13 +65,13 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BROWSER</name>
-          <description>Browxser name</description>
+          <description>Browxser2 name</description>
           <defaultValue>chrome</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BROWSER_VERSION</name>
-          <description>Browser version</description>
+          <description>Browser2 version</description>
           <defaultValue>107.0</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>

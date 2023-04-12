@@ -7,6 +7,8 @@
     filter-executors: true
     filter-queue: true
     job-name:
+      - 'api-tests'
+      - 'appium-tests'
       - 'ui-tests'
       - 'runner-tests'
       - 'jobs_uploader'

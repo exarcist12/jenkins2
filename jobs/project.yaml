@@ -4,6 +4,8 @@
     name: 'Autotests'
     job-description: '<h4 style="color:#999696;">UI tests</h4>'
     jobs:
+      - 'api-tests'
+      - 'appium-tests'
       - 'ui-tests'
       - 'runner-tests'
       - 'jobs_uploader'

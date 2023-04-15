@@ -1,5 +1,5 @@
 - job-template:
-    name: 'ui-tests'
+    name: 'appium-tests'
     description: '<h3 style="color:#999696;">APPIUM tests</h3>'
     project-type: pipeline
     concurrent: true

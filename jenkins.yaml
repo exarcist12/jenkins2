@@ -1,0 +1,232 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          id: "jenkins"
+          privateKeySource:
+            directEntry:
+              privateKey: "{AQAAABAAAAHgoe0fq4b1xz/zGywCBxpqZrPq3qHBW13Z6/DIXwCyik07r6mx94BaxdrSTiKXNJxZvpcm8X1SY9Dtt2HBAqBhlp3Gns8M1+h7W/B8ODTsU4JEPl4uQL2saP5GnsKMGE18SnqdVmQYRn/rulLd43p0jwbxmKe7sjm4ZW6IEGj0gIJP0juVPPqWUfvvYGrpIO34omK30Jrre23QbajORz16iepd9/elgZD2txNzjkVf2tJ+rXwQxVn/gJ0YaYlk07rd0HH03Agi/HfXUE1zF5WyYVojKlDzgsXmY1bauwY1s2IDo4rTZYipWS75vpAHVmsr8wxoCnrhACFu6/6x8mz5NutJQMZhN/J3cbTFTDkDbKqaFgWGjjw4Zo8IsC2uJrclBKi9KcBy9afVunkDfSFvZAIkmc3XxXCFLhJjcI8D24GX6x3ltVufbdyrd3A3qowMtCYK+jY+5fZWMH6jzZkjFnI+B/PLJUTT77RDlBa8OW0po7mdWXf84HMjthU6e+5D4MMcPRS2rg0ylDOH3rlhlhZlQAc8ZhyjCJuX5B9+shQhVUQEmsP9lWJOKmdzjrSUOayLKKYCNS+VCeIrIrEPcCO5z78Xbs++M8RN7v6wavsqiWeqWrV3fXNgYuDxAuZGD5fOfpq98Do/n9jsJ9AkBA==}"
+          scope: GLOBAL
+          username: "exarcist12@gmail.com"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+  - docker:
+      dockerApi:
+        connectTimeout: 60
+        dockerHost:
+          uri: "unix:///var/run/docker.sock"
+        readTimeout: 60
+      name: "maven-slave"
+      templates:
+      - connector: "attach"
+        dockerTemplateBase:
+          cpuPeriod: 0
+          cpuQuota: 0
+          image: "localhost:5005/maven_slave:1.1.0"
+          network: "Host"
+        labelString: "maven-slave"
+        name: "maven-slave"
+        pullTimeout: 300
+  - docker:
+      dockerApi:
+        connectTimeout: 60
+        dockerHost:
+          uri: "unix:///var/run/docker.sock"
+        readTimeout: 60
+      name: "jobs-uploader"
+      templates:
+      - connector: "attach"
+        dockerTemplateBase:
+          cpuPeriod: 0
+          cpuQuota: 0
+          image: "localhost:5005/maven_jobs:1.0.0"
+          network: "Host"
+        labelString: "jobs-uploader"
+        name: "jobs-uploader"
+        pullTimeout: 300
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "jenkins.diagnostics.ControllerExecutorsAgents"
+  labelAtoms:
+  - name: "built-in"
+  - name: "jobs-uploader"
+  - name: "maven-slave"
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        properties:
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "timezone"
+        - "experimentalFlags"
+        - mailer:
+            emailAddress: "admin@admin.ru"
+        - "apiToken"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - list:
+      columns:
+      - "status"
+      - "buildButton"
+      - "jobName"
+      description: |-
+        <h3 style="color:#999696;">DevOpss</h3>
+        <!-- Managed by Jenkins Job Builder -->
+      jobNames:
+      - "jobs_uploader"
+      name: "DevOps"
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      description: |-
+        <h3 style="color:#999696;">QA Jobs</h3>
+        <!-- Managed by Jenkins Job Builder -->
+      jobNames:
+      - "api-tests"
+      - "appium-tests"
+      - "jobs_uploader"
+      - "runner-tests"
+      - "ui-tests"
+      name: "QA"
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildStepOperation:
+    enabled: false
+  buildUserVars:
+    allBuilds: false
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8091/github-webhook/"
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+    overwriteable: false
+  injectionConfig:
+    allowUntrusted: false
+    enabled: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "адрес еще не настроен <nobody@nowhere>"
+    url: "http://localhost:8091/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  allure:
+    installations:
+    - name: "allure2"
+      properties:
+      - installSource:
+          installers:
+          - allureCommandlineInstaller:
+              id: "2.21.0"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
